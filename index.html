@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <LINK REL=StyleSheet HREF="main.css" TYPE="text/css" MEDIA=screen>
+  <STYLE TYPE="text/css" MEDIA="screen, projection">
+	<!--
+	@import url(http://cdn.datatables.net/1.10.5/css/jquery.dataTables.css);
+	-->
+	</STYLE>
+ <head>
+  	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="http://cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"></script> 
+	 <title>Nick's Database Project</title>
+  </head>
+  <body>
+	<form>
+		<div>
+			<label for="name">Column 1:</label>
+			<input type="text" name ="name" id="name" />
+		</div>
+		<div>
+			<label for="mail">Column 2:</label>
+			<input type="text" name="email" id="email" />
+		</div>
+	<!--	<div>
+			<label for="msg">Message:</label>
+			<textarea id="msg"></textarea>
+		</div> -->
+		<div clas="button">
+			<button type="submit">Query the DB</button>
+		</div>
+	</form>
+	<div id=result></div>
+	 <script type = 'text/javascript' src="./test.js"></script>
+         <table id='thetable' class="display" cellspacing="0" width="100%"></table>		 
+ </body>
+</html>
+
