@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<LINK REL=StyleSheet HREF="main.css" TYPE="text/css" MEDIA=screen>
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script type = 'text/javascript' src="./sorttable.js"></script>
+    <title>Nick's Database Project</title>
+</head>
+<body>
+<form>
+    <div>
+        <label for="name">Business name:</label>
+        <input type="text" name ="name" id="name" />
+    </div>
+    <p>
+        <label for="ratingchoice">With atleast a rating of:</label>
+        <select id="ratingchoice" name="rating">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+        </select>
+    </p>
+    <!--	<div>
+        <label for="msg">Message:</label>
+        <textarea id="msg"></textarea>
+    </div> -->
+    <div class="button">
+        <button type="submit">Query the DB</button>
+    </div>
+</form>
+<div id=result></div>
+<script type = 'text/javascript' src="./test.js"></script>
+<table id='thetable'></table>
+</body>
+</html>
