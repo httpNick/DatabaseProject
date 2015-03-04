@@ -10,6 +10,8 @@ var conn = mysql.createConnection({
 });
 
 $(document).ready(function() {
+    document.getElementById('userid').innerHTML = "You are currently: " + getUrlParameter('chooseuser');
+    sessionStorage.userid = getUrlParameter('chooseuser');
     queryString = "Select * " +
     "from BusinessOwner " +
     "WHERE Username='" + getUrlParameter('chooseuser')+ "';";

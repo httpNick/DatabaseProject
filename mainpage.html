@@ -8,19 +8,16 @@
 	 <title>Nick's Database Project</title>
   </head>
   <body>
-  <form action='./findreviews.html'>
-		  <div class="button">
-			  <button type="submit">Find a review.</button>
+  <form method="get">
+		 <label id="userid"></label>
+	     <div class="button">
+			  <button type="submit" formaction="./findreviews.html">Find a review.</button>
 		  </div>
-	  </form>
-  <form action='./findreviews.html'>
 		  <div class="button">
-			  <button type="submit">Add a review.</button>
+			  <button type="submit" formaction="./submitreviewpage.html">Add a review.</button>
 		  </div>
-	  </form>
-  <form action='./findreviews.html'>
 		  <div class="button">
-			  <button type="submit">Search business by Category.</button>
+			  <button type="submit" formaction="./findreviews.html">Search business by Category.</button>
 		  </div>
       </form>
   <table id='thetable'></table>

@@ -10,6 +10,7 @@ database : "db_project"
 var queryString = "";
 
 $(document).ready(function() {
+	console.log(sessionStorage.userid);
 	queryString = "Select BusinessName " +
 		"from REVIEW ";
 	conn.query(queryString, function(error, results) {
