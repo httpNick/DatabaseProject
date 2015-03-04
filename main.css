@@ -51,6 +51,7 @@ table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sor
 	content: " \25B4\25BE"
 }
 
+/* Credit for this table formatting goes to: http://www.csstablegenerator.com/download-table-css-code.php?id=3&page=0&type=colors */
 .CSSTableGenerator {
 	margin:0px;padding:0px;
 	width:100%;	box-shadow: 10px 10px 5px #888888;

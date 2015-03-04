@@ -8,6 +8,30 @@ password : "",
 database : "db_project"
 });
 var queryString = "";
+
+$(document).ready(function() {
+	queryString = "Select BusinessName " +
+		"from REVIEW ";
+	conn.query(queryString, function(error, results) {
+		if (error) {
+			alert("Problem connecting to database.");
+			throw error;
+		} else {
+			var optionArray = [];
+			for (var i = 0; i < results.length; i++) {
+				if (optionArray.indexOf(results[i].BusinessName) === -1) {
+					optionArray.push(results[i].BusinessName);
+				}
+			}
+			var myOptionMenu = "";
+			for (var i = 0; i < optionArray.length; i++) {
+				myOptionMenu += "<option> " + optionArray[i] + " </option>";
+			}
+			document.getElementById('name').innerHTML = myOptionMenu;
+		}
+	});
+});
+
 $("form").submit(function( event ) {
 var arr = $('form').serializeArray();
 queryString = "Select * " +

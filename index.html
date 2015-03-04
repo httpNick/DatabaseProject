@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html>
- <head>
-	 <title>Nick's Database Project</title>
-  </head>
-  <body>
-  <form>
-	  <div>
-		  <label>Find reviews for a business:</label> <a href="findreviews.html">here</a><br>
-		  <label>Search businesses by category:</label> <a href="findreviews.html">here</a><br>
-		  <label>Add a review to a business:</label> <a href="findreviews.html">here</a><br>
-	  </div>
-	  </form>
-  </body>
+<LINK REL=StyleSheet HREF="main.css" TYPE="text/css" MEDIA=screen>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script type = 'text/javascript' src="./userselection.js"></script>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Choose your username</title>
+</head>
+<body>
+<form action="./mainpage.html">
+    <p>
+        <label for="chooseuser">Select your username:</label>
+        <select id="chooseuser" name="chooseuser">
+        </select>
+    </p>
+    <div class="button">
+        <button type="submit">Login</button>
+    </div>
+</form>
+</body>
 </html>
-
