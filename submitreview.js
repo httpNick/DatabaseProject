@@ -11,7 +11,9 @@ var conn = mysql.createConnection({
 
 var queryString = '';
 var cUser = sessionStorage.userid;
-
+/*
+    Takes the info filled out from the html form, and submits the review into database in a query.
+ */
 $(document).ready(function() {
     document.getElementById('currentuser').innerHTML = "Submitting Review as: " + cUser;
     queryString = "Select BusinessName " +

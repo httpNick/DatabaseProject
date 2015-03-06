@@ -10,7 +10,9 @@ var conn = mysql.createConnection({
 });
 
 var queryString = "";
-
+/*
+    Queries the database and fills the HTML select object with all usernames you can log-in as.
+ */
 $(document).ready(function() {
     queryString = "Select Username " +
     "from USER ";

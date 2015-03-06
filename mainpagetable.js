@@ -8,7 +8,10 @@ var conn = mysql.createConnection({
     password : "",
     database : "duncan_nick_db"
 });
-
+/*
+    On the main page (if the user is a business owner) it will display the reviews for the business they own. This
+    file queries the database and creates the HTML table to be inserted onto the page.
+ */
 $(document).ready(function() {
     document.getElementById('userid').innerHTML = "You are currently: " + getUrlParameter('chooseuser');
     sessionStorage.userid = getUrlParameter('chooseuser');

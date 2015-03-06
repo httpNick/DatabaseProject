@@ -8,7 +8,11 @@ password : "",
 database : "duncan_nick_db"
 });
 var queryString = "";
-
+/*
+	This js file handles the search for a business's reviews. Itll display them in a nicely formatted HTML table.
+	A select object is filled with all business names when the page is loaded so the user knows what businesses there
+	are in the database without having to search or know beforehand.
+ */
 $(document).ready(function() {
 	console.log(sessionStorage.userid);
 	queryString = "Select BusinessName " +

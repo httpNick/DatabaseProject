@@ -10,7 +10,11 @@ var conn = mysql.createConnection({
 });
 
 var queryString = '';
-
+/*
+    This javascript file handles the user creation page. There are two choices - to submit a basic user to submit
+    a basic user, or submit a business owner user. Depending on which one has its form submitted it will insert the info
+    filled out in the form to the database. An alert also pops up telling the user if their creation was successful or not.
+ */
 $(document).ready(function() {
     $("#basic_user_creation").submit(function (event) {
         var uName = $('input[name=usernameinput]').val();
