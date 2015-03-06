@@ -5,14 +5,14 @@ var conn = mysql.createConnection({
 host : "localhost",
 user : "root",
 password : "",
-database : "db_project"
+database : "duncan_nick_db"
 });
 var queryString = "";
 
 $(document).ready(function() {
 	console.log(sessionStorage.userid);
 	queryString = "Select BusinessName " +
-		"from REVIEW ";
+		"from Business ";
 	conn.query(queryString, function(error, results) {
 		if (error) {
 			alert("Problem connecting to database.");
