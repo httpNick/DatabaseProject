@@ -15,30 +15,35 @@ var conn = mysql.createConnection({
 $(document).ready(function() {
     document.getElementById('userid').innerHTML = "You are currently: " + getUrlParameter('chooseuser');
     sessionStorage.userid = getUrlParameter('chooseuser');
-    queryString = "Select * " +
-    "from BusinessOwner " +
-    "WHERE Username='" + getUrlParameter('chooseuser')+ "';";
+    var queryString = "SELECT REVIEW.Username, REVIEW.ReviewText, REVIEW.Rating" +
+    " FROM BusinessOwner JOIN REVIEW on BusinessOwner.BusinessOwned = REVIEW.BusinessName " +
+    "WHERE BusinessOwner.Username='" + getUrlParameter('chooseuser')+ "';";
     console.log(queryString);
     conn.query(queryString, function(error, results) {
         if (error) {
             alert("Problem connecting to database.");
             throw error;
         } else {
+            if (results.length > 0) {
             var myTable = "<thead><tr align='left'>";
             for (var col in results[0]) {
-                myTable+="<th>" + col + "</th>";
+                myTable += "<th>" + col + "</th>";
             }
-            myTable+='</tr></thead><tbody><tr>';
+            myTable += '</tr></thead><tbody><tr>';
             for (var i = 0; i < results.length; i++) {
-                myTable+="</tr><tr>";
+                myTable += "</tr><tr>";
                 for (var col in results[i]) {
-                    myTable+="<td>" + results[i][col] + "</td>";
-                } }
-            myTable+="</tr></tbody>";
+                    myTable += "<td>" + results[i][col] + "</td>";
+                }
+            }
+            myTable += "</tr></tbody>";
             document.getElementById('thetable').className = 'sortable CSSTableGenerator';
             document.getElementById('thetable').innerHTML = myTable;
             var thenewtable = document.getElementById('thetable');
             sorttable.makeSortable(thenewtable);
+        } else {
+                document.getElementById('nodata').innerHTML = "Currently no reviews to show for your business, or you are not a business owner!";
+            }
         }
     });
 });

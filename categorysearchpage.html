@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<LINK REL=StyleSheet HREF="main.css" TYPE="text/css" MEDIA=screen>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script type = 'text/javascript' src="./sorttable.js"></script>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<form>
+    <p>
+        <label for="categorychoice">Select Category:</label>
+        <select id="categorychoice" name="category"></select>
+        <label for="ratingchoice">With atleast a rating of:</label>
+        <select id="ratingchoice" name="rating">
+            <option>Not yet Rated</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+        </select>
+    </p>
+    <div class="button">
+        <button type="submit">Query the DB</button>
+    </div>
+    </form>
+<table id='thetable'></table>
+<script type = 'text/javascript' src="categorysearch.js"></script>
+</body>
+</html>
