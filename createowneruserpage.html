@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<LINK REL=StyleSheet HREF="main.css" TYPE="text/css" MEDIA=screen>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<body>
+<form id="business_user_creation">
+    <input type="hidden" name="username" id="username">
+    <input type="hidden" name="password" id="password">
+    <p>
+        <label>Create a Business Owner User</label>
+        <label for="businessusernameinput">Username:</label>
+        <input type="text" name="businessusernameinput" id="businessusernameinput">
+        <label for="businessname">Restaurant Name:</label>
+        <input type="text" name="businessname" id="businessname">
+        <label for="category">Restaurant Category:</label>
+        <input type="text" name="category" id="category">
+        <label for="businessemail">Email:</label>
+        <input type="email" id="businessemail" name="businessemail">
+        <label for="businessuseraddress">Your Address:</label>
+        <input type="text" id="businessuseraddress" name="businessuseraddress">
+        <label for="businessaddress">Your Restaurant's Address:</label>
+        <input type="text" id="businessaddress" name="businessaddress">
+    </p>
+    <div class="button">
+        <button type="submit">Create</button>
+    </div>
+</form>
+<script type = 'text/javascript' src="./createowneruser.js"></script>
+
+</body>
+</html>

@@ -4,8 +4,8 @@
 var mysql = require('mysql');
 var conn = mysql.createConnection({
     host : "localhost",
-    user : "root",
-    password : "",
+    user : getUrlParameter('username'),
+    password : getUrlParameter('password'),
     database : "duncan_nick_db"
 });
 
@@ -15,10 +15,12 @@ var cUser = sessionStorage.userid;
     Takes the info filled out from the html form, and submits the review into database in a query.
  */
 $(document).ready(function() {
+    $('#username').val(getUrlParameter('username'));
+    $('#password').val(getUrlParameter('password'));
     document.getElementById('currentuser').innerHTML = "Submitting Review as: " + cUser;
-    queryString = "Select BusinessName " +
-    "from Review WHERE Review.Username != '" + cUser + "';";
-    conn.query(queryString, function(error, results) {
+    queryString = "Select Business.BusinessName " +
+    "from BusinessOwner JOIN Business on BusinessOwner.BusinessOwned = Business.Businessname WHERE BusinessOwner.Username != '" + cUser + "';";
+    conn.query(queryString, function (error, results) {
         if (error) {
             alert("Problem connecting to database.");
             throw error;
@@ -36,21 +38,35 @@ $(document).ready(function() {
             document.getElementById('name').innerHTML = myOptionMenu;
         }
     });
+
+
+    $("form").submit(function (event) {
+        var arr = $('form').serializeArray();
+        queryString = 'INSERT INTO REVIEW VALUES (\"' + arr[2].value + '\", \"' +
+        cUser + '\", \"' + arr[3].value + '\", ' + arr[4].value + ');';
+        console.log(queryString);
+        conn.query(queryString, function (error, results) {
+            if (error) {
+                alert("You can only review a business once!");
+                throw error;
+            } else {
+                alert("added review successfully.");
+            }
+        });
+        event.preventDefault();
+    });
 });
 
-$("form").submit(function(event) {
-    var arr = $('form').serializeArray();
-    console.log(arr);
-    queryString = "INSERT INTO REVIEW VALUES ('" + arr[0].value + "', '" +
-       cUser + "', '" + arr[1].value + "', " +  arr[2].value + ");";
-    console.log(queryString);
-    conn.query(queryString, function(error, results) {
-       if (error) {
-           alert("Problem with inserting data");
-           throw error;
-       } else {
-           console.log("added review successfully.");
-       }
-    });
-event.preventDefault();
-});
+function getUrlParameter(sParam)
+{
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++)
+    {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam)
+        {
+            return sParameterName[1];
+        }
+    }
+}

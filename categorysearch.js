@@ -4,12 +4,14 @@
 var mysql = require('mysql');
 var conn = mysql.createConnection({
     host : "localhost",
-    user : "root",
-    password : "",
+    user : getUrlParameter('username'),
+    password : getUrlParameter('password'),
     database : "duncan_nick_db"
 });
 var queryString = "";
 $(document).ready(function() {
+    $('#username').val(getUrlParameter('username'));
+    $('#password').val(getUrlParameter('password'));
     queryString = "Select Category " +
     "from Business ";
     conn.query(queryString, function(error, results) {
@@ -72,3 +74,16 @@ $("form").submit(function( event ) {
     });
     event.preventDefault();
 });
+function getUrlParameter(sParam)
+{
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++)
+    {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam)
+        {
+            return sParameterName[1];
+        }
+    }
+}

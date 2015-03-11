@@ -4,8 +4,8 @@
 var mysql = require('mysql');
 var conn = mysql.createConnection({
     host : "localhost",
-    user : "root",
-    password : "",
+    user : getUrlParameter('username'),
+    password : getUrlParameter('password'),
     database : "duncan_nick_db"
 });
 /*
@@ -13,6 +13,8 @@ var conn = mysql.createConnection({
     file queries the database and creates the HTML table to be inserted onto the page.
  */
 $(document).ready(function() {
+    $('#username').val(getUrlParameter('username'));
+    $('#password').val(getUrlParameter('password'));
     document.getElementById('userid').innerHTML = "You are currently: " + getUrlParameter('chooseuser');
     sessionStorage.userid = getUrlParameter('chooseuser');
     var queryString = "SELECT REVIEW.Username, REVIEW.ReviewText, REVIEW.Rating" +

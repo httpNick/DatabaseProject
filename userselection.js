@@ -4,8 +4,8 @@
 var mysql = require('mysql');
 var conn = mysql.createConnection({
     host : "localhost",
-    user : "root",
-    password : "",
+    user : getUrlParameter('username'),
+    password : getUrlParameter('password'),
     database : "duncan_nick_db"
 });
 
@@ -14,6 +14,8 @@ var queryString = "";
     Queries the database and fills the HTML select object with all usernames you can log-in as.
  */
 $(document).ready(function() {
+    $('#username').val(getUrlParameter('username'));
+    $('#password').val(getUrlParameter('password'));
     queryString = "Select Username " +
     "from USER ";
     conn.query(queryString, function(error, results) {
@@ -35,3 +37,17 @@ $(document).ready(function() {
         }
     });
 });
+
+function getUrlParameter(sParam)
+{
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++)
+    {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam)
+        {
+            return sParameterName[1];
+        }
+    }
+}

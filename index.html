@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <LINK REL=StyleSheet HREF="main.css" TYPE="text/css" MEDIA=screen>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script type = 'text/javascript' src="./userselection.js"></script>
@@ -9,6 +10,8 @@
 </head>
 <body>
 <form action="./mainpage.html">
+    <input type="hidden" name="username" id="username">
+    <input type="hidden" name="password" id="password">
     <p>
         <label for="chooseuser">Select your username:</label>
         <select id="chooseuser" name="chooseuser">
@@ -17,7 +20,8 @@
     <div class="button">
         <button type="submit" id="login">Login</button>
     </div>
-    <div class="button"><button type="submit" formaction="./createuserpage.html">Create New User</button></div>
+    <div class="button"><button type="submit" formaction="./createuserpage.html">Create Basic User</button></div>
+    <div class="button"><button type="submit" formaction="./createowneruserpage.html">Create Restaurant Owner User</button></div>
 </form>
 </body>
 </html>

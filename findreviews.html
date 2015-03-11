@@ -7,7 +7,7 @@
     <title>Nick's Database Project</title>
 </head>
 <body>
-<form>
+<form action="mainpage.html">
     <div>
         <label for="name">Business name:</label>
         <select id="name" name="name">
@@ -23,17 +23,19 @@
             <option>5</option>
         </select>
     </p>
+    <input type="hidden" name="username" id="username">
+    <input type="hidden" name="password" id="password">
     <!--	<div>
         <label for="msg">Message:</label>
         <textarea id="msg"></textarea>
     </div> -->
     <div class="button">
-        <button type="submit">Query the DB</button>
+        <button type="submit" formaction="mainpage.html">Query the DB</button>
     </div>
 </form>
 <div id=result></div>
-<script type = 'text/javascript' src="searchreviews.js"></script>
 <div id="noreviews"></div>
 <table id='thetable'></table>
+<script type = 'text/javascript' src="searchreviews.js"></script>
 </body>
 </html>

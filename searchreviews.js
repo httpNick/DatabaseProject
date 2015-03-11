@@ -2,10 +2,10 @@ var p = require('path');
 var req = require('request');
 var mysql = require('mysql');
 var conn = mysql.createConnection({
-host : "localhost",
-user : "root",
-password : "",
-database : "duncan_nick_db"
+	host : "localhost",
+	user : getUrlParameter('username'),
+	password : getUrlParameter('password'),
+	database : "duncan_nick_db"
 });
 var queryString = "";
 /*
@@ -14,6 +14,8 @@ var queryString = "";
 	are in the database without having to search or know beforehand.
  */
 $(document).ready(function() {
+	$('#username').val(getUrlParameter('username'));
+	$('#password').val(getUrlParameter('password'));
 	console.log(sessionStorage.userid);
 	queryString = "Select BusinessName " +
 		"from Business ";
@@ -35,44 +37,58 @@ $(document).ready(function() {
 			document.getElementById('name').innerHTML = myOptionMenu;
 		}
 	});
-});
-
-$("form").submit(function( event ) {
-var arr = $('form').serializeArray();
-queryString = "Select * " +
-			"from REVIEW " +
-			"where REVIEW.BusinessName = \"" + arr[0].value + "\"" +
-			" AND REVIEW.Rating >= " + arr[1].value + ";";
-	console.log(queryString);
-conn.query(queryString, function(error, results)
-{
-	if(error)
-	{
-	alert("Both text fields are not filled out, or have incorrect parameters.");
-	throw error;
-	} else {
-		if (results.length > 0) {
-			var myTable = "<thead><tr align='left'>";
-			for (var col in results[0]) {
-				myTable += "<th>" + col + "</th>";
-			}
-			myTable += '</tr></thead><tbody><tr>';
-			for (var i = 0; i < results.length; i++) {
-				myTable += "</tr><tr>";
-				for (var col in results[i]) {
-					myTable += "<td>" + results[i][col] + "</td>";
+	$("form").submit(function( event ) {
+		var arr = $('form').serializeArray();
+		queryString = "Select * " +
+		"from REVIEW " +
+		"where REVIEW.BusinessName = \"" + arr[0].value + "\"" +
+		" AND REVIEW.Rating >= " + arr[1].value + ";";
+		console.log(queryString);
+		conn.query(queryString, function(error, results)
+		{
+			if(error)
+			{
+				alert("Both text fields are not filled out, or have incorrect parameters.");
+				throw error;
+			} else {
+				if (results.length > 0) {
+					var myTable = "<thead><tr align='left'>";
+					for (var col in results[0]) {
+						myTable += "<th>" + col + "</th>";
+					}
+					myTable += '</tr></thead><tbody><tr>';
+					for (var i = 0; i < results.length; i++) {
+						myTable += "</tr><tr>";
+						for (var col in results[i]) {
+							myTable += "<td>" + results[i][col] + "</td>";
+						}
+					}
+					myTable += "</tr></tbody>";
+					document.getElementById('thetable').className = 'sortable CSSTableGenerator';
+					document.getElementById('thetable').innerHTML = myTable;
+					var thenewtable = document.getElementById('thetable');
+					sorttable.makeSortable(thenewtable);
+				} else {
+					document.getElementById('noreviews').innerHTML = "No reviews for this business yet, or none with this rating!";
 				}
 			}
-			myTable += "</tr></tbody>";
-			document.getElementById('thetable').className = 'sortable CSSTableGenerator';
-			document.getElementById('thetable').innerHTML = myTable;
-			var thenewtable = document.getElementById('thetable');
-			sorttable.makeSortable(thenewtable);
-		} else {
-			document.getElementById('noreviews').innerHTML = "No reviews for this business yet, or none with this rating!";
+		});
+		event.preventDefault();
+	});
+});
+
+
+function getUrlParameter(sParam)
+{
+	var sPageURL = window.location.search.substring(1);
+	var sURLVariables = sPageURL.split('&');
+	for (var i = 0; i < sURLVariables.length; i++)
+	{
+		var sParameterName = sURLVariables[i].split('=');
+		if (sParameterName[0] == sParam)
+		{
+			return sParameterName[1];
 		}
 	}
-});
-event.preventDefault();
-});
+}
 
