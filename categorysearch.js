@@ -37,15 +37,15 @@ $(document).ready(function() {
 $("form").submit(function( event ) {
     var arr = $('form').serializeArray();
     console.log(arr);
-    if (arr[1].value === 'Not yet Rated') {
+    if (arr[3].value === 'Not yet Rated') {
         queryString = "Select Business.BusinessName " +
         "from Business " +
-        "where Category = \"" + arr[0].value + "\"" +  ";";
+        "where Category = \"" + arr[2].value + "\"" +  ";";
     } else {
         queryString = "Select Business.BusinessName " +
         "from Business JOIN REVIEW on Business.BusinessName = REVIEW.BusinessName " +
-        "where Category = \"" + arr[0].value + "\"" +
-        " AND Rating >= " + arr[1].value + ";";
+        "where Category = \"" + arr[2].value + "\"" +
+        " AND Rating >= " + arr[3].value + ";";
     }
     console.log(queryString);
     conn.query(queryString, function(error, results)
